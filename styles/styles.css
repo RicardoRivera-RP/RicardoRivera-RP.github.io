@@ -17,6 +17,7 @@
 
 html, body{ height: 100%; }
 
+
 body{
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -132,14 +133,14 @@ body{
 }
 
 
-.age-gate-buttons{
+.age-gate-buttons, .employees{
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
 #age-yes,
-#age-no{
+#age-no, #employee-section{
   flex: 1 1 180px;
   min-width: min(180px, 100%);
   padding: 12px 16px;
@@ -160,6 +161,34 @@ body{
   color: #fff;
   border-color: #ffffff33;
 }
+
+#employee-section{
+  align-items: center;
+  justify-content: center;
+  margin-top: 8.5px;
+  padding-top: 12px;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(90deg, darkred 0%, darkgreen 50%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  color: goldenrod;
+  font-weight: bold;
+  transition: background-position 250ms ease, color 200ms ease;
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+#employee-section:hover{
+  background: linear-gradient(90deg, darkred 0%, darkgreen 30%, gold 99%);
+  background-size: 200% 200%;
+  background-position: 100% 50%;
+  color: black;
+}
+
 
 #age-yes:hover{ border-color: darkblue; }
 #age-no:hover{ border-color: orangered; }
@@ -194,10 +223,10 @@ body{
 }
 
  
-#age-title:hover{
+/* #age-title:hover{
   color:orangered;
   cursor: pointer;
-}
+} */
 
 #underage-gate{
   position: fixed;
@@ -242,3 +271,12 @@ body{
 
 #underage-back:hover{ border-color: #ffffff66; }
 #underage-leave:hover{ border-color: orangered; }
+
+
+#employee-portal{
+  display: none;        /* start hidden */
+  position: relative;
+  z-index: 2;           /* above background */
+  color: white;         /* visible on dark bg */
+  padding: 24px;
+}

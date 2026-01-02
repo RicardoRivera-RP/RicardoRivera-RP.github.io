@@ -22,52 +22,56 @@
     <!-- ✅ background layer that stays after age gate closes -->
     <div id="site-bg" aria-hidden="true"></div>
 
-    <!-- age verification -->
-    <div
-      id="age-gate"
-      aria-modal="true"
-      role="dialog"
-      aria-labelledby="age-title"
-      aria-describedby="age-desc">
+        <!-- age verification -->
+        <div
+          id="age-gate"
+          aria-modal="true"
+          role="dialog"
+          aria-labelledby="age-title"
+          aria-describedby="age-desc"
+        >
+          <div class="age-gate-box">
+            <h2 id="age-title" class="age-gate-title">Puff Puff Pass Job Application</h2>
+            <h3 id="age-verification">Are you at least 21-years old?</h3>
+            <p id="age-desc" class="age-gate-desc">
+              This job requires handling cannabis. Please confirm your age before applying.
+            </p>
 
-      <div class="age-gate-box">
-        <h2 id="age-title" class="age-gate-title">Puff Puff Pass Job Application</h2>
-        <h3 id="age-verification">Are you at least 21-years old?</h3>
-        <p id="age-desc" class="age-gate-desc">
-          This job requires handling cannabis. Please confirm your age before applying.
-        </p>
-        
+            <div class="age-gate-buttons">
+              <button id="age-yes" type="button">Yes, I am 21+</button>
+              <button id="age-no" type="button">No</button>
+            </div>
 
-        <div class="age-gate-buttons">
-          <button id="age-yes">Yes, I am 21+</button>
-          <button id="age-no">No</button>
-        </div>
-      </div>
-    </div>
-    <!-- end of age verification -->
-    <!-- underage / access denied -->
-      <div
-        id="underage-gate"
-        aria-modal="true"
-        role="dialog"
-        aria-labelledby="underage-title"
-        aria-describedby="underage-desc"
-      >
-        <div class="age-gate-box">
-          <h2 id="underage-title" class="age-gate-title">Access Denied</h2>
-          <h3 id="underage-verification">You are not old enough to access this website.</h3>
-
-          <p id="underage-desc" class="age-gate-desc">
-            You must be 21 or older to continue. Please exit the site.
-          </p>
-
-          <div class="age-gate-buttons">
-            <button id="underage-back" type="button">Go Back</button>
-            <button id="underage-leave" type="button">Leave Site</button>
+            <div class="employees">
+              <button id="employee-section" type="button">Employee Portal</button>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- end underage / access denied -->
+        <!-- ✅ end of age verification -->
+        <!-- underage / access denied -->
+        <div
+          id="underage-gate"
+          aria-modal="true"
+          role="dialog"
+          aria-labelledby="underage-title"
+          aria-describedby="underage-desc"
+        >
+          <div class="age-gate-box">
+            <h2 id="underage-title" class="age-gate-title">Access Denied</h2>
+            <h3 id="underage-verification">You are not old enough to access this website.</h3>
+
+            <p id="underage-desc" class="age-gate-desc">
+              You must be 21 or older to continue. Please exit the site.
+            </p>
+
+            <div class="age-gate-buttons">
+              <button id="underage-back" type="button">Go Back</button>
+              <button id="underage-leave" type="button">Leave Site</button>
+            </div>
+          </div>
+        </div>
+        <!-- end underage / access denied -->
+
 
           
     <!-- Job Application Embed -->
@@ -83,8 +87,11 @@
         >
       </div>
     </section>
-
+      <section id="employee-portal"> 
     
+      
+      </section>
+      
   </body>
-  <script src="scripts/landing_page.js"></script>
+<script src="scripts/landing_page.js" defer></script>
 </html>
