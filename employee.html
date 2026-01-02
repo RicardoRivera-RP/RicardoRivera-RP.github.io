@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee Portal</title>
+  <style>
+    html, body { height: 100%; margin: 0; background:#111; }
+    #posFrame { width: 100%; height: 100vh; border: 0; display:none; }
+    #msg { color:#eee; font-family: Arial; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div id="msg">Loading…</div>
+  <iframe id="posFrame" allow="clipboard-read; clipboard-write"></iframe>
+
+  <script>
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbz-iHa9vYCbC1djPHpRdMHZ4-GCJyQPkk5cyEV-a2wazAF5Hzi4FKF266LMOpAQ5T5S/exec";
+
+    function getTokenFromHash() {
+      const m = location.hash.match(/token=([^&]+)/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    const token = getTokenFromHash() || sessionStorage.getItem("ppp_token");
+
+    if (!token) {
+      window.location.replace(GAS_URL); // go to login
+    } else {
+      sessionStorage.setItem("ppp_token", token);
+      history.replaceState(null, "", location.pathname + location.search);
+
+      document.getElementById("msg").style.display = "none";
+      const frame = document.getElementById("posFrame");
+      frame.style.display = "block";
+      frame.src = GAS_URL + "?token=" + encodeURIComponent(token);
+    }
+  </script>
+</body>
+</html>

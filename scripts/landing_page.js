@@ -144,5 +144,8 @@
   document.getElementById("employee-section").addEventListener("click", () => {
     showPopup("You will be prompted to login shortly, please standby!");
     setTimeout(loginPage, 4000);
+    window.location.href = "https://script.google.com/macros/s/AKfycby_KNEm9_DuADhgQF16FuZZ1HBHVHyK-X4wORBxdNoMhPlA6UI1-pPYtEZoT08LMt7P/exec";
+
   });
+
 
