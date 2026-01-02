@@ -1,111 +1,130 @@
-body{
-    background: rgba(0, 0, 0, 0.7);
+/* ================= GLOBAL ================= */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #2f2f2f; /* fallback behind bg layer */
 }
-/* Fullscreen overlay with background image */
+
+/* ✅ background image layer (stays behind app + gate) */
+#site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    url("../media/icons/9ea05517-6abf-4e98-a651-70aa6df369de.png") no-repeat center center,
+    rgba(0, 0, 0, 0.7);
+  background-size: contain;
+}
+
+/* ================= PUFF PUFF APPLICATION ================= */
+/* ✅ app above background */
+#Puff_Puff_Application {
+  position: relative;
+  z-index: 1;
+
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;      /* form starts near top */
+  justify-content: center;
+  padding: 24px 0;
+}
+
+/* optional: nice “card” behind iframe */
+.app-shell {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ================= AGE GATE OVERLAY ================= */
+/* ✅ gate above everything */
 #age-gate {
-    position: fixed;
-    inset: 0;
-    display: none;
-    z-index: 9999;
-    background: url("../media/icons/sandbox_logo.png") no-repeat center center, rgba(0, 0, 0, 0.7) /* adjustable darkness */;
-    background-size: contain;  
-     
-    
-  }
-  
-  #age-gate { position: fixed; inset: 0; }
-  .age-gate-box {
-    position: absolute;
-    top: 12px;     
-    right: 460px;
-    z-index: 1;
-  }
-  
-  
- 
-  #age-gate .age-gate-box {
-    max-width: 520px;
-    margin: 10vh auto;
-    padding: 24px;
-    border-radius: 16px;
-    background: #111;
-    color: #fff;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  }
-  
+  position: fixed;
+  inset: 0;
+  display: none; /* JS toggles to flex */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 
-  #age-gate .age-gate-title{
-    margin: 0 0 8px;
-    text-align: center;
-    font-size: 1.75rem;
-    color:darkgray;
-   
-    line-height: 1.2;
-  }
-  #age-verification{
-    margin: 0 0 8px;
-    text-align: center;
-    font-size: 1.75rem;
-    line-height: 1.2;
-    color:darkgray;
+  background: rgba(0, 0, 0, 0.65);
+}
 
-  }
-  #age-gate .age-gate-desc {
-    text-align: center;
-    margin: 0 0 18px;
-    opacity: 0.85;
-    color:darkgray;
-  }
-  
-  
-  #age-gate .age-gate-buttons {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  
+/* ================= AGE GATE MODAL ================= */
+.age-gate-box {
+  max-width: 520px;
+  width: calc(100% - 32px);
+  padding: 24px;
+  border-radius: 16px;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: pop 0.25s ease-out;
+}
 
-  #age-gate #age-yes {
-    flex: 1;
-    min-width: 120px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    background: darkgreen;
-    color: #053019;
-  }
-  
+/* ================= TEXT ================= */
+.age-gate-title,
+#age-verification {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: darkgray;
+}
 
-  #age-gate #age-no{
-    flex: 1;
-    min-width: 120px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: 1px solid #ffffff33;
-    background: darkred;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
+.age-gate-desc {
+  text-align: center;
+  margin: 0 0 18px;
+  opacity: 0.85;
+  color: darkgray;
+}
 
-  }
+/* ================= BUTTONS ================= */
+.age-gate-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-  #age-gate #age-no:hover{
-    border: 2px solid orangered;
-  }
+#age-yes,
+#age-no {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-  #age-gate #age-yes:hover{
-    border: 2px solid darkblue;
+#age-yes {
+  background: darkgreen;
+  color: #053019;
+}
+
+#age-no {
+  background: darkred;
+  color: #fff;
+  border: 1px solid #ffffff33;
+}
+
+#age-yes:hover {
+  border: 2px solid darkblue;
+}
+
+#age-no:hover {
+  border: 2px solid orangered;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes pop {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
   }
-  
- 
-  #age-gate .age-gate-footer {
-    margin: 14px 0 0;
-    font-size: 0.85rem;
-    opacity: 0.75;
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
-  #age-gate .age-gate-footer a {
-    color: #93c5fd;
-  }
-  
+}

@@ -1,37 +1,64 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Puff Puff Pass</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name = "description" content ="FiveM Dispensary Website">
-        <meta name = "author" content ="Ricardo Rivera">
-        <meta name="keywords" content = "Puff Puff Pass">
-        <link rel="stylesheet" href="styles/styles.css">
-        <link rel="icon" href="media/Icons/shop.svg" type="image/svg">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">           
-        
-    </head>
-<body>
+  <head>
+    <title>Puff Puff Pass</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FiveM Dispensary Website" />
+    <meta name="author" content="Ricardo Rivera" />
+    <meta name="keywords" content="Puff Puff Pass" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="icon" href="media/Icons/shop.svg" type="image/svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <!-- age verification -->
-<div id="age-gate" aria-modal="true" role="dialog" aria-labelledby="age-title" aria-describedby="age-desc">
-    <div class="age-gate-box">
-      <h2 id="age-title" class="age-gate-title"> Age Verification</h2>
-      <h3 id = "age-verification">Are you at least 21-years old?</h3>
-      <p id="age-desc" class="age-gate-desc">This site contains cannabis-related content. Please confirm your age.</p> 
+  <body>
+    <!-- ✅ background layer that stays after age gate closes -->
+    <div id="site-bg" aria-hidden="true"></div>
 
-      <div class="age-gate-buttons">
-        <button id="age-yes">Yes, I am 21+</button>
-        <button id="age-no">No</button>
-      </div>    
+    <!-- age verification -->
+    <div
+      id="age-gate"
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby="age-title"
+      aria-describedby="age-desc"
+    >
+      <div class="age-gate-box">
+        <h2 id="age-title" class="age-gate-title">Puff Puff Pass</h2>
+        <h3 id="age-verification">Are you at least 21-years old?</h3>
+        <p id="age-desc" class="age-gate-desc">
+          This job requires handling cannabis. Please confirm your age before applying.
+        </p>
+
+        <div class="age-gate-buttons">
+          <button id="age-yes">Yes, I am 21+</button>
+          <button id="age-no">No</button>
+        </div>
+      </div>
     </div>
-  </div>
-<!-- end of age verification -->
+    <!-- end of age verification -->
 
+    <!-- Job Application Embed -->
+    <section id="Puff_Puff_Application">
+      <div class="app-shell">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdfSTNDCnUnrr_Ahc-lrYCR6H03XDWvLGiC45-46lL692XX6g/viewform?embedded=true"
+          width="640"
+          height="1296"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          >Loading…</iframe
+        >
+      </div>
+    </section>
 
-</body>
-<script src="scripts/landing_page.js"></script>
+    <script src="scripts/landing_page.js"></script>
+  </body>
 </html>
