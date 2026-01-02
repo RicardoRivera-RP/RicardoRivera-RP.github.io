@@ -45,7 +45,7 @@ body{
 #Puff_Puff_Application{
   position: relative;
   z-index: 1;
-  margin-top:125px;
+  margin-top:75px;
   padding-top:25px;
   display: flex;
   justify-content: center;
