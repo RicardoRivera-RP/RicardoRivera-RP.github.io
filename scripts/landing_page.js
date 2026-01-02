@@ -85,7 +85,7 @@ const Puff_Puff_Application = document.getElementById("Puff_Puff_Application");
         break;
 
       case "underage-leave":
-        window.location.replace("about:blank"); // change if you want
+        window.location.replace("https://www.google.com"); // change if you want
         break;
     }
   });
