@@ -174,10 +174,9 @@ body{
   :root{ --page-pad: 12px; }
   .app-shell{ padding: 10px; border-radius: 14px; }
 
-  /* stack buttons on tiny screens */
+
   #age-yes, #age-no{ flex-basis: 100%; }
 
-  /* slightly taller form on tiny screens */
   .app-shell iframe{
     height: 82vh;
     height: 82svh;
@@ -195,11 +194,11 @@ body{
 }
 
  
-#age-title{
+#age-title:hover{
   color:orangered;
   cursor: pointer;
 }
-/* Underage modal uses same look/feel as age gate */
+
 #underage-gate{
   position: fixed;
   inset: 0;
