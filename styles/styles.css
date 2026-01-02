@@ -1,4 +1,4 @@
-/* ================= GLOBAL / IOS SAFARI FIXES ================= */
+
 :root{
   --page-pad: 16px;
   --card-pad: 12px;
@@ -25,7 +25,7 @@ body{
   -webkit-text-size-adjust: 100%;
 }
 
-/* ================= BACKGROUND LAYER ================= */
+
 #site-bg{
   position: fixed;
   inset: 0;
@@ -34,11 +34,10 @@ body{
 
   /* iOS Safari likes explicit layers */
   background-color: rgba(0,0,0,.7);
-  /* background-image: url("../media/icons/9ea05517-6abf-4e98-a651-70aa6df369de.png"); */
   background-repeat: no-repeat;
   background-position: center center;
 
-  /* "contain" often looks tiny on phones; this scales nicer */
+
   background-size: 86vmin auto;
 }
 
@@ -46,24 +45,24 @@ body{
 #Puff_Puff_Application{
   position: relative;
   z-index: 1;
-
+  margin-top:125px;
+  padding-top:25px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 
-  /* ✅ iOS Safari viewport height fixes */
-  min-height: 100vh;                 /* fallback */
-  min-height: 100svh;                /* modern */
-  min-height: -webkit-fill-available;/* older iOS */
+  min-height: 100vh; 
+  min-height: 100svh;                
+  min-height: -webkit-fill-available;
 
-  /* ✅ safe area padding */
+
   padding:
     calc(var(--page-pad) + env(safe-area-inset-top))
     var(--page-pad)
     calc(var(--page-pad) + env(safe-area-inset-bottom));
 }
 
-/* ================= CARD ================= */
+
 .app-shell{
   width: min(960px, 100%);
   padding: var(--card-pad);
@@ -72,24 +71,21 @@ body{
   overflow: hidden;
 }
 
-/* ================= IFRAME (GOOGLE FORM) ================= */
-/* iOS Safari hates % heights unless parents have height. Use a solid viewport-based height. */
+
 .app-shell iframe{
   display: block;
   width: 100%;
   border: 0;
-
-  /* ✅ better on iPhone */
-  height: 78vh;   /* fallback */
-  height: 78svh;  /* modern iOS */
-  min-height: 640px; /* prevents “too short” on some screens */
+  height: 78vh;  
+  height: 78svh;  
+  min-height: 640px;
 }
 
-/* ================= AGE GATE OVERLAY ================= */
+
 #age-gate{
   position: fixed;
   inset: 0;
-  display: none; /* JS sets to flex */
+  display: none; 
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -102,7 +98,7 @@ body{
   background: rgba(0,0,0,.65);
 }
 
-/* ================= AGE GATE MODAL ================= */
+
 .age-gate-box{
   width: min(var(--modal-max), 100%);
   padding: clamp(16px, 4vw, 28px);
@@ -111,14 +107,13 @@ body{
   color: #fff;
   box-shadow: var(--shadow);
 
-  /* prevents modal overflow */
   max-height: calc(100svh - 40px);
   overflow: auto;
 
   animation: pop .25s ease-out;
 }
 
-/* ================= TEXT ================= */
+
 .age-gate-title,
 #age-verification{
   margin: 0 0 8px;
@@ -136,7 +131,7 @@ body{
   color: darkgray;
 }
 
-/* ================= BUTTONS ================= */
+
 .age-gate-buttons{
   display: flex;
   gap: 12px;
@@ -152,7 +147,7 @@ body{
   border: 1px solid transparent;
   font-weight: 600;
   cursor: pointer;
-  min-height: 44px; /* tap target */
+  min-height: 44px; 
 }
 
 #age-yes{
@@ -169,13 +164,12 @@ body{
 #age-yes:hover{ border-color: darkblue; }
 #age-no:hover{ border-color: orangered; }
 
-/* ================= ANIMATION ================= */
+
 @keyframes pop{
   from{ transform: scale(.96); opacity: 0; }
   to{ transform: scale(1); opacity: 1; }
 }
 
-/* ================= SMALL iPHONE ================= */
 @media (max-width: 420px){
   :root{ --page-pad: 12px; }
   .app-shell{ padding: 10px; border-radius: 14px; }
