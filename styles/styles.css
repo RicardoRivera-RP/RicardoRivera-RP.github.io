@@ -189,3 +189,57 @@ body{
 @media (prefers-reduced-motion: reduce){
   .age-gate-box{ animation: none; }
 }
+
+#underage-verification{
+  text-align: center;
+}
+
+ 
+#age-title{
+  color:orangered;
+  cursor: pointer;
+}
+/* Underage modal uses same look/feel as age gate */
+#underage-gate{
+  position: fixed;
+  inset: 0;
+  display: none; 
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+
+  padding:
+    calc(var(--page-pad) + env(safe-area-inset-top))
+    var(--page-pad)
+    calc(var(--page-pad) + env(safe-area-inset-bottom));
+
+  background: rgba(0,0,0,.75);
+}
+
+/* Underage buttons */
+#underage-back,
+#underage-leave{
+  flex: 1 1 180px;
+  min-width: min(180px, 100%);
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+#underage-back{
+  background: #2a2a2a;
+  color: #eaeaea;
+  border-color: #ffffff33;
+}
+
+#underage-leave{
+  background: darkred;
+  color: #fff;
+  border-color: #ffffff33;
+}
+
+#underage-back:hover{ border-color: #ffffff66; }
+#underage-leave:hover{ border-color: orangered; }
