@@ -32,12 +32,13 @@
       window.location.replace(GAS_URL);
     } else {
       sessionStorage.setItem("ppp_token", token);
+      // remove the #token from the URL
       history.replaceState(null, "", location.pathname + location.search);
 
       frame.style.display = "block";
       frame.src = GAS_URL + "?token=" + encodeURIComponent(token);
 
-      msg.textContent = "Loading POS… (If this stays, token is invalid or iframe is blocked)";
+      msg.textContent = "Loading POS…";
     }
   </script>
 </body>

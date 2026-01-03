@@ -141,15 +141,19 @@
     document.body.style.overflow = "";
   }
 
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbydi5Eriwduhs6qzARFl6pAjy9VxF2_d33vNokSOuH0piiy1_9wnBYc4WaXVp8EbBqO/exec";
-
-    document.getElementById("employee-section").addEventListener("click", (e) => {
-      e.preventDefault();
-      showPopup("You will be prompted to login shortly, please standby!");
-
-      setTimeout(() => {
-        window.location.href = GAS_URL;
-      }, 4000);
-    });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbydi5Eriwduhs6qzARFl6pAjy9VxF2_d33vNokSOuH0piiy1_9wnBYc4WaXVp8EbBqO/exec";
+
+  const btn = document.getElementById("employee-section");
+  if (!btn) return;
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    // optional popup delay
+    showPopup("You will be prompted to login shortly, please standby!");
+    setTimeout(() => window.location.href = GAS_URL, 4000);
+    window.location.href = GAS_URL;
+  });
+});
