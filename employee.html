@@ -15,25 +15,29 @@
   <iframe id="posFrame" allow="clipboard-read; clipboard-write"></iframe>
 
   <script>
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbw76QEKSvjq6eXBKN_KZeXbPQNyQNHKoaLiElRIv4wghp2v8DlC_AO-HZIAKQFy0Q8e/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbydi5Eriwduhs6qzARFl6pAjy9VxF2_d33vNokSOuH0piiy1_9wnBYc4WaXVp8EbBqO/exec";
 
     function getTokenFromHash() {
       const m = location.hash.match(/token=([^&]+)/);
       return m ? decodeURIComponent(m[1]) : null;
     }
 
+    const msg = document.getElementById("msg");
+    const frame = document.getElementById("posFrame");
+
     const token = getTokenFromHash() || sessionStorage.getItem("ppp_token");
 
     if (!token) {
-      window.location.replace(GAS_URL); // go to login
+      msg.textContent = "No session found. Redirecting to login…";
+      window.location.replace(GAS_URL);
     } else {
       sessionStorage.setItem("ppp_token", token);
       history.replaceState(null, "", location.pathname + location.search);
 
-      document.getElementById("msg").style.display = "none";
-      const frame = document.getElementById("posFrame");
       frame.style.display = "block";
       frame.src = GAS_URL + "?token=" + encodeURIComponent(token);
+
+      msg.textContent = "Loading POS… (If this stays, token is invalid or iframe is blocked)";
     }
   </script>
 </body>

@@ -141,11 +141,15 @@
     document.body.style.overflow = "";
   }
 
-  document.getElementById("employee-section").addEventListener("click", () => {
-    showPopup("You will be prompted to login shortly, please standby!");
-    setTimeout(loginPage, 4000);
-    window.location.href = "https://script.google.com/macros/s/AKfycbw76QEKSvjq6eXBKN_KZeXbPQNyQNHKoaLiElRIv4wghp2v8DlC_AO-HZIAKQFy0Q8e/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbydi5Eriwduhs6qzARFl6pAjy9VxF2_d33vNokSOuH0piiy1_9wnBYc4WaXVp8EbBqO/exec";
 
-  });
+    document.getElementById("employee-section").addEventListener("click", (e) => {
+      e.preventDefault();
+      showPopup("You will be prompted to login shortly, please standby!");
+
+      setTimeout(() => {
+        window.location.href = GAS_URL;
+      }, 4000);
+    });
 
 
