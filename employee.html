@@ -35,7 +35,7 @@
       // remove the #token from the URL
       history.replaceState(null, "", location.pathname + location.search);
 
-      frame.style.display = "block";
+      frame.style.display = "flex";
       frame.src = GAS_URL + "?token=" + encodeURIComponent(token);
 
       msg.textContent = "Loading POS…";

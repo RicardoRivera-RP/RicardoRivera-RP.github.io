@@ -92,37 +92,8 @@
   })();
 
 
-  function createPopup(message) {
-      const popup = document.createElement("div");
-      let ageGate = document.getElementById("age-gate");
-      ageGate.style.display = "none";
-      popup.className = 'popup';
-      popup.textContent = message;
-      popup.style.position = "fixed";
-      popup.style.top = "45%";
-      popup.style.left = "50%";
-      popup.style.transform = "translate(-50%, -50%)";
-      popup.style.padding = "10px";
-      popup.style.backgroundColor = "orangered";
-      popup.style.border = "1px solid black";
-      popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
-      popup.style.zIndex = "9999";
-      document.body.appendChild(popup);
-      return popup;
-      
-  }
 
-    function showPopup(message) {
-        const popup = createPopup(message);
-        setTimeout(function() {
-            popup.remove();
-        }, 
-        3850);
-    }
-
-
-
-    function loginPage() {
+  function loginPage() {
     const employeePortal = document.getElementById("employee-portal");
     if (!employeePortal) {
       console.error("Missing #employee-portal");
@@ -143,17 +114,4 @@
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbydi5Eriwduhs6qzARFl6pAjy9VxF2_d33vNokSOuH0piiy1_9wnBYc4WaXVp8EbBqO/exec";
 
-  const btn = document.getElementById("employee-section");
-  if (!btn) return;
-
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    // optional popup delay
-    showPopup("You will be prompted to login shortly, please standby!");
-    setTimeout(() => window.location.href = GAS_URL, 4000);
-    window.location.href = GAS_URL;
-  });
-});
