@@ -80,19 +80,15 @@
                   3850);
               }
               document.addEventListener("DOMContentLoaded", () => {
-                const GAS_URL = "https://script.google.com/macros/s/AKfycbwbGDRRnyfLjiM_rYySLL5bXkbn7-LdlnFGcmJTLz1-H4RX4rdLzNVQqI9ND-U39h38/exec";
+              
 
-                const btn = document.getElementById("employee-section");
-                if (!btn) return;
-
-                btn.addEventListener("click", (e) => {
+                  document.getElementById("employee-section")?.addEventListener("click", (e) => {
                   e.preventDefault();
-                  // optional popup delay
                   showPopup("You will be prompted to login shortly, please standby!");
-                  setTimeout(() => window.location.href = GAS_URL, 4000);
-                  window.location.href = GAS_URL;
+                  setTimeout(() => window.location.href = "./employee.html", 800);
                 });
-              });
+
+                });
 
               </script>
               
