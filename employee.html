@@ -5,41 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Employee Portal</title>
   <style>
-    html, body { height: 100%; margin: 0; background:#111; }
-    #posFrame { width: 100%; height: 100vh; border: 0; display:none; }
-    #msg { color:#eee; font-family: Arial; padding: 16px; }
+    body { margin:0; font-family: Arial, sans-serif; background:#111; color:#eee; padding:16px; }
+    button { padding:10px 14px; border-radius:10px; border:0; cursor:pointer; font-weight:700; }
+    .muted { color:#aaa; font-size:12px; }
   </style>
 </head>
 <body>
   <div id="msg">Loading…</div>
-  <iframe id="posFrame" allow="clipboard-read; clipboard-write"></iframe>
+  <button id="reset" style="display:none;">Reset session</button>
+  <div id="dbg" class="muted"></div>
 
   <script>
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbwbGDRRnyfLjiM_rYySLL5bXkbn7-LdlnFGcmJTLz1-H4RX4rdLzNVQqI9ND-U39h38/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbzfSLlmnCRjKZt9IdMqdJ-0uzLurpnKLzNuxKA_uNTo0LADrod-CnfsYEyOnG45c0E3/exec";
 
-    function getTokenFromHash() {
-      const m = location.hash.match(/token=([^&]+)/);
-      return m ? decodeURIComponent(m[1]) : null;
+    function getToken() {
+      const hash = location.hash.startsWith("#") ? location.hash.slice(1) : location.hash;
+      return new URLSearchParams(hash).get("token");
     }
 
     const msg = document.getElementById("msg");
-    const frame = document.getElementById("posFrame");
+    const resetBtn = document.getElementById("reset");
+    const dbg = document.getElementById("dbg");
 
-    const token = getTokenFromHash() || sessionStorage.getItem("ppp_token");
+    resetBtn.onclick = () => {
+      sessionStorage.removeItem("ppp_token");
+      location.replace(location.pathname);
+    };
+
+    const token = getToken() || sessionStorage.getItem("ppp_token");
+    dbg.textContent = token ? ("token length: " + token.length) : "no token";
 
     if (!token) {
+      resetBtn.style.display = "inline-block";
       msg.textContent = "No session found. Redirecting to login…";
       window.location.replace(GAS_URL);
     } else {
       sessionStorage.setItem("ppp_token", token);
-      // remove the #token from the URL
       history.replaceState(null, "", location.pathname + location.search);
 
-      frame.style.display = "flex";
-      frame.src = GAS_URL + "?token=" + encodeURIComponent(token);
-
-
-      msg.textContent = "Loading POS…";
+      msg.textContent = "Opening POS…";
+      // ✅ redirect to webapp (no iframe)
+      window.location.replace(GAS_URL + "?token=" + encodeURIComponent(token));
     }
   </script>
 </body>
