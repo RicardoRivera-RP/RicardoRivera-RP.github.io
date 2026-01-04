@@ -15,7 +15,7 @@
   <iframe id="posFrame" allow="clipboard-read; clipboard-write"></iframe>
 
   <script>
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbydi5Eriwduhs6qzARFl6pAjy9VxF2_d33vNokSOuH0piiy1_9wnBYc4WaXVp8EbBqO/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbyTxZJkM7LrVOhBHLTNrcSYWnx-ww4t2Dktgo3Uj7oveAG6TIXTv0PhHLMofqi9-xmx/exec";
 
     function getTokenFromHash() {
       const m = location.hash.match(/token=([^&]+)/);
@@ -36,7 +36,8 @@
       history.replaceState(null, "", location.pathname + location.search);
 
       frame.style.display = "flex";
-      frame.src = GAS_URL + "?token=" + encodeURIComponent(token);
+      frame.src = GAS_URL + "?token=" + encodeURIComponent(token) + "&diag=1";
+
 
       msg.textContent = "Loading POS…";
     }
