@@ -1,3 +1,6 @@
+// fully copy/paste (keeps EVERYTHING you already have)
+// only adds what's required so it actually works + fixes refresh showing the form
+
 const Puff_Puff_Application = document.getElementById("Puff_Puff_Application");
 const Dispensary_Menu = document.getElementById("Dispensary_Menu");
 
@@ -59,7 +62,17 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
     document.getElementById("go-menu")?.focus();
   }
 
- 
+  // ✅ ADDED (required because your code calls showMenu())
+  function showMenu() {
+    hide(ageGate);
+    hide(underageGate);
+    hide(verifiedGate);
+
+    if (Puff_Puff_Application) Puff_Puff_Application.style.display = "none";
+    if (Dispensary_Menu) Dispensary_Menu.style.display = "flex";
+
+    unlockSite();
+  }
 
   function showApplication() {
     hide(ageGate);
@@ -71,6 +84,9 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
 
     unlockSite();
   }
+
+  // ✅ ADDED (prevents the Google Form iframe from showing on refresh before routing runs)
+  lockSite();
 
   // ---------- initial state ----------
   const verified = sessionStorage.getItem(VERIFIED_KEY);

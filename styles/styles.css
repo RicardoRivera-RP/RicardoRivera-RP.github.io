@@ -1,3 +1,8 @@
+/* start hidden; JS decides */
+#Puff_Puff_Application,
+#Dispensary_Menu {
+  display: none;
+}
 
 :root{
   --page-pad: 16px;
