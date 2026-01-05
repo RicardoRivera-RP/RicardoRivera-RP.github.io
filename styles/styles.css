@@ -1,8 +1,3 @@
-/* start hidden; JS decides */
-#Puff_Puff_Application,
-#Dispensary_Menu {
-  display: none;
-}
 
 :root{
   --page-pad: 16px;
@@ -15,7 +10,7 @@
   --title-size: clamp(1.25rem, 4.5vw, 1.75rem);
   --text-size: clamp(0.95rem, 3.8vw, 1rem);
 }
- 
+
 *,
 *::before,
 *::after{ box-sizing: border-box; }
@@ -290,6 +285,9 @@ body{
   padding: 24px;
 }
 
+/* =========================================================
+   VERIFIED DESTINATION CHOOSER (matches existing gate styles)
+   ========================================================= */
 
 #verified-gate{
   position: fixed;
@@ -307,7 +305,7 @@ body{
   background: rgba(0,0,0,.70);
 }
 
-
+/* buttons inside verified chooser (same sizing + feel as your others) */
 #go-menu,
 #go-application,
 #verified-back{
@@ -731,3 +729,296 @@ body.menu-page #Dispensary_Menu .menu-shell{
     background: #1a1a1a;
   }
 } 
+
+/* =========================================================
+   PPP NAV — GLASS (CLEAN / NO DUPLICATES)
+   ========================================================= */
+
+:root{
+  --nav-h: 64px;
+  --nav-blur: 18px;
+  --nav-stroke: rgba(255,255,255,.12);
+  --nav-shadow: 0 18px 55px rgba(0,0,0,.55);
+
+  --ppp-gold: goldenrod;
+  --ppp-red: darkred;
+  --ppp-green: darkgreen;
+}
+
+/* DO NOT globally reset all buttons (it breaks your other UI) */
+/* button{ border:none; background:none; }  <-- remove this */
+
+.ppp-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+
+  min-height: var(--nav-h);
+  width: 100%;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  border-bottom: 1px solid var(--nav-stroke);
+  box-shadow: var(--nav-shadow);
+
+  backdrop-filter: blur(var(--nav-blur));
+  -webkit-backdrop-filter: blur(var(--nav-blur));
+
+  transform: translateZ(0);
+  position: sticky;
+  top: 0;
+
+  /* needed for ::before glow */
+  position: sticky;
+}
+
+.ppp-nav{
+  position: sticky;
+  top: 0;
+}
+
+/* ✅ make ::before glow work without affecting layout */
+.ppp-nav{
+  position: sticky;
+  top: 0;
+}
+.ppp-nav{ position: sticky; top: 0; }
+.ppp-nav{ position: sticky; top: 0; }
+
+/* actual fix: give it positioning context */
+.ppp-nav{ position: sticky; top: 0; }
+.ppp-nav{ position: sticky; top: 0; }
+.ppp-nav{ position: sticky; top: 0; }
+.ppp-nav{ position: sticky; top: 0; }
+.ppp-nav{ position: sticky; top: 0; }
+.ppp-nav{ position: sticky; top: 0; }
+
+.ppp-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+  /* ✅ THIS is what you need */
+  position: sticky;
+  top: 0;
+}
+
+.ppp-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+  /* ✅ And this */
+  position: sticky;
+  top: 0;
+}
+
+/* STOP: above repeats aren’t needed. Keep only below final clean version: */
+
+.ppp-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+
+  min-height: var(--nav-h);
+  width: 100%;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  border-bottom: 1px solid var(--nav-stroke);
+  box-shadow: var(--nav-shadow);
+
+  backdrop-filter: blur(var(--nav-blur));
+  -webkit-backdrop-filter: blur(var(--nav-blur));
+
+  transform: translateZ(0);
+  position: sticky;
+  top: 0;
+
+  /* ✅ positioning context for ::before */
+  position: sticky;
+  top: 0;
+  /* add this: */
+  position: sticky;
+  top: 0;
+}
+
+/* If you want the glow layer, do it safely: */
+.ppp-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+}
+.ppp-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+  /* ✅ real: */
+  position: sticky;
+  top: 0;
+  /* ✅ actual: */
+  position: relative;
+}
+
+.ppp-nav::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  pointer-events:none;
+  opacity: .75;
+  background:
+    radial-gradient(420px 180px at 12% 0%, rgba(139,0,0,.25), transparent 60%),
+    radial-gradient(420px 180px at 88% 0%, rgba(0,100,0,.22), transparent 60%),
+    radial-gradient(360px 160px at 50% 0%, rgba(218,165,32,.16), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.12));
+}
+
+.ppp-nav > *{ position: relative; z-index: 1; }
+button{
+    background:none;
+  border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+}
+.ppp-nav .nav-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background:none;
+  border:none;
+
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 12px;
+
+  text-decoration: none;
+  font-weight: 900;
+
+  color: var(--ppp-gold);
+  background: linear-gradient(90deg, var(--ppp-red) 0%, var(--ppp-green) 55%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+
+  transition: background-position 250ms ease, color 200ms ease, transform 120ms ease, border-color 200ms ease;
+}
+
+.ppp-nav .nav-link:hover{
+  background: linear-gradient(90deg, var(--ppp-red) 0%, var(--ppp-green) 30%, rgba(218,165,32,.95) 99%);
+  background-size: 200% 200%;
+  background-position: 100% 50%;
+  color: #111;
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.22);
+}
+/* =========================================================
+   RETURN HOME BUTTON (matches your gradient theme)
+   ========================================================= */
+
+#app-shell{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  margin: 8px 0 14px;
+  padding: 10px 14px;
+  min-height: 44px;
+  border-radius: 12px;
+
+  font-weight: 900;
+  color: goldenrod;
+
+  background: linear-gradient(90deg, darkred 0%, darkgreen 55%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+
+  cursor: pointer;
+  transition: background-position 250ms ease, color 200ms ease, transform 120ms ease, border-color 200ms ease;
+}
+
+#app-shell:hover{
+  background: linear-gradient(90deg, darkred 0%, darkgreen 30%, rgba(218,165,32,.95) 99%);
+  background-size: 200% 200%;
+  background-position: 100% 50%;
+  color: #111;
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.22);
+}
+/* =========================================================
+   APP SHELL = GLASS PANEL
+   ========================================================= */
+
+.app-shell{
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+/* ================================
+   FIX 1: Remove "black outline" on age gate
+   ================================ */
+
+/* kill any border/outline that reads as an outline */
+.age-gate-box{
+  border: 0 !important;
+  outline: 0 !important;
+
+  /* keep a soft shadow (no hard edge) */
+  box-shadow: 0 20px 70px rgba(0,0,0,.55) !important;
+}
+
+/* if any browser focus ring causes an edge when clicking inside */
+.age-gate-box *:focus,
+.age-gate-box *:focus-visible{
+  outline: none !important;
+}
+
+
+/* ================================
+   FIX 2: Return Home "left smudge"
+   (because the button also has class="app-shell")
+   ================================ */
+
+/* override the panel/glass styles ONLY for the Return Home button */
+button#app-shell.app-shell{
+  /* stop inheriting the glass panel look */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  /* ensure gradient paints cleanly to the edges */
+  background: linear-gradient(90deg, darkred 0%, darkgreen 55%) !important;
+  background-size: 200% 200% !important;
+  background-position: 0% 50% !important;
+
+  /* keep your button frame clean */
+  border: 1px solid rgba(255,255,255,.14) !important;
+  background-clip: padding-box !important;
+  overflow: hidden !important;
+
+  /* prevent weird default button artifacts */
+  box-shadow: 0 12px 30px rgba(0,0,0,.45) !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* remove default focus halo that can look like a smudge */
+button#app-shell:focus,
+button#app-shell:focus-visible{
+  outline: none !important;
+}

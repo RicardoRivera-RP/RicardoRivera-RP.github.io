@@ -1,6 +1,3 @@
-// fully copy/paste (keeps EVERYTHING you already have)
-// only adds what's required so it actually works + fixes refresh showing the form
-
 const Puff_Puff_Application = document.getElementById("Puff_Puff_Application");
 const Dispensary_Menu = document.getElementById("Dispensary_Menu");
 
@@ -24,13 +21,23 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
     el.style.display = "none";
   }
 
+  function resetSession() {
+    sessionStorage.removeItem(VERIFIED_KEY);
+    sessionStorage.removeItem(UNDERAGE_KEY);
+    sessionStorage.removeItem(DEST_KEY);
+  }
+
   function lockSite() {
+    // hide only the page sections — DO NOT touch nav
     if (Puff_Puff_Application) Puff_Puff_Application.style.display = "none";
     if (Dispensary_Menu) Dispensary_Menu.style.display = "none";
+
+    document.body.classList.add("ppp-locked");
     document.body.style.overflow = "hidden";
   }
 
   function unlockSite() {
+    document.body.classList.remove("ppp-locked");
     document.body.style.overflow = "";
   }
 
@@ -62,15 +69,22 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
     document.getElementById("go-menu")?.focus();
   }
 
-  // ✅ ADDED (required because your code calls showMenu())
   function showMenu() {
     hide(ageGate);
     hide(underageGate);
     hide(verifiedGate);
 
-    if (Puff_Puff_Application) Puff_Puff_Application.style.display = "none";
-    if (Dispensary_Menu) Dispensary_Menu.style.display = "flex";
+    // If we're on index.html, there is NO #Dispensary_Menu section,
+    // so trying to "showMenu()" would lead to a blank page.
+    // Instead, go to menu.html.
+    if (!Dispensary_Menu) {
+      sessionStorage.setItem(DEST_KEY, "menu");
+      window.location.href = "./menu.html";
+      return;
+    }
 
+    Dispensary_Menu.style.display = "flex";
+    if (Puff_Puff_Application) Puff_Puff_Application.style.display = "none";
     unlockSite();
   }
 
@@ -79,14 +93,31 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
     hide(underageGate);
     hide(verifiedGate);
 
-    if (Dispensary_Menu) Dispensary_Menu.style.display = "none";
-    if (Puff_Puff_Application) Puff_Puff_Application.style.display = "flex";
+    // If this page doesn't have the app section, send them home.
+    if (!Puff_Puff_Application) {
+      sessionStorage.setItem(DEST_KEY, "application");
+      window.location.href = "./index.html";
+      return;
+    }
 
+    if (Dispensary_Menu) Dispensary_Menu.style.display = "none";
+    Puff_Puff_Application.style.display = "flex";
     unlockSite();
   }
 
-  // ✅ ADDED (prevents the Google Form iframe from showing on refresh before routing runs)
-  lockSite();
+  // --------- Hook Return Home buttons/links to reset session ---------
+  // 1) The button inside your form shell: <button id="app-shell">Return Home</button> :contentReference[oaicite:4]{index=4}
+  document.getElementById("app-shell")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    resetSession();
+    window.location.href = "https://ricardorivera-rp.github.io";
+  });
+
+  // 2) Your nav link: <a class="nav-link" href="...">Return Home</a> :contentReference[oaicite:5]{index=5}
+  document.querySelector(".ppp-nav .nav-link")?.addEventListener("click", (e) => {
+    // allow normal navigation, just clear first
+    resetSession();
+  });
 
   // ---------- initial state ----------
   const verified = sessionStorage.getItem(VERIFIED_KEY);
@@ -96,7 +127,7 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
   if (verified) {
     if (dest === "menu") showMenu();
     else if (dest === "application") showApplication();
-    else showVerifiedChooser(); // verified but no choice yet
+    else showVerifiedChooser();
   } else if (denied) {
     showUnderageGate();
   } else {
@@ -113,7 +144,7 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
       case "age-yes":
         sessionStorage.setItem(VERIFIED_KEY, "true");
         sessionStorage.removeItem(UNDERAGE_KEY);
-        sessionStorage.removeItem(DEST_KEY); // reset choice each session if you want
+        sessionStorage.removeItem(DEST_KEY);
         showVerifiedChooser();
         break;
 
@@ -136,7 +167,6 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
         break;
 
       case "verified-back":
-        // back to the age gate (and un-verify for this session)
         sessionStorage.removeItem(VERIFIED_KEY);
         sessionStorage.removeItem(DEST_KEY);
         showAgeGate();

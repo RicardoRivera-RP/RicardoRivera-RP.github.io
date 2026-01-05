@@ -18,6 +18,11 @@
     />
 
   </head>
+   <nav class="ppp-nav" id="top-nav">
+        <button> 
+            <a href="https://ricardorivera-rp.github.io" class="nav-link">Return Home</a>
+          </button>
+      </nav>
     <body class ="menu-page">
        
     <main id="main-content">
@@ -26,16 +31,21 @@
         <header class="menu-header">
         <div class="menu-header-left">
             <h1 class="menu-title">Puff Puff Pass Dispensary Menu</h1>
-            <p class="menu-subtitle">For Viewing Purposes Only</p>
+            <p class="menu-subtitle">For Viewing Purposes Only. Prices and Products are subject to change at any time.</p>
         </div>
 
-        <!-- <button id="menu-back" class="menu-back" type="button">Return Home</button> -->
-        <script> 
-        document.getElementById("menu-back")?.addEventListener("click", (e) => {
-          e.preventDefault();
-          window.location.href = "https://ricardorivera-rp.github.io";
-        });
-        </script>
+        <button id="menu-back" class="menu-back" type="button">Return Home</button>
+            <script>
+                document.getElementById("menu-back")?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    // Clear so home shows the age gate again (otherwise you can get blank/redirect loops)
+                    sessionStorage.removeItem("ageVerified_session");
+                    sessionStorage.removeItem("ageDenied_session");
+                    sessionStorage.removeItem("ppp_destination");
+                    window.location.href = "https://ricardorivera-rp.github.io";
+                });
+            </script>
+      
         </header>
 
         <div class="menu-controls">
