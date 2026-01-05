@@ -130,7 +130,15 @@
         <!-- End of Dispo Menu Embed -->
     <!-- Job Application Embed -->
     <section id="Puff_Puff_Application">
+      
       <div class="app-shell">
+        <button id="app-shell" class="app-shell" type="button">Return Home</button>
+        <script> 
+        document.getElementById("app-shell")?.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "https://ricardorivera-rp.github.io";
+        });
+        </script>
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSdfSTNDCnUnrr_Ahc-lrYCR6H03XDWvLGiC45-46lL692XX6g/viewform?embedded=true"
           
@@ -139,6 +147,7 @@
           marginwidth="0"
           >Loading…</iframe
         >
+        
       </div>
     </section>
   
