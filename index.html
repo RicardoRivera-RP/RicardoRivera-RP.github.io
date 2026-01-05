@@ -48,6 +48,7 @@
 
             <div class="age-gate-buttons">
               <button id="age-yes" type="button">Yes, I am 21+</button>
+
               <button id="age-no" type="button">No</button>
             </div>
             <!-- employee portal + popup script -->
@@ -96,6 +97,33 @@
           </div>
         </div>
         <!-- ✅ end of age verification -->
+
+        <!-- ✅ verified destination chooser -->
+        <div
+          id="verified-gate"
+          aria-modal="true"
+          role="dialog"
+          aria-labelledby="verified-title"
+          aria-describedby="verified-desc"
+          style="display:none;"
+        >
+          <div class="age-gate-box">
+            <h2 id="verified-title" class="age-gate-title">Welcome</h2>
+            <p id="verified-desc" class="age-gate-desc">
+              You’re verified. Where would you like to go?
+            </p>
+
+            <div class="age-gate-buttons">
+              <!-- <button id="go-menu" type="button">Dispensary Menu</button> -->
+              <button id="go-application" type="button">Job Application</button>
+            </div>
+
+            <div class="age-gate-buttons" style="margin-top: 10px;">
+              <button id="verified-back" type="button">Back</button>
+            </div>
+          </div>
+        </div>
+
         <!-- underage / access denied -->
         <div
           id="underage-gate"
@@ -120,8 +148,20 @@
         </div>
         <!-- end underage / access denied -->
 
-
-          
+        <!-- Dispo Menu Embed -->
+         <!-- Dispensary Menu (hidden until chosen) -->
+          <section id="Dispensary_Menu" style="display:none;">
+            <div class="app-shell">
+              <!-- TODO: replace with your real menu page/embed -->
+              <iframe
+                src="./menu.html"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+              >Loading…</iframe>
+            </div>
+          </section>
+        <!-- End of Dispo Menu Embed -->
     <!-- Job Application Embed -->
     <section id="Puff_Puff_Application">
       <div class="app-shell">
