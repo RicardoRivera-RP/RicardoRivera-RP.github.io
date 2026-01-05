@@ -280,3 +280,117 @@ body{
   color: white;         /* visible on dark bg */
   padding: 24px;
 }
+
+/* =========================================================
+   VERIFIED DESTINATION CHOOSER (matches existing gate styles)
+   ========================================================= */
+
+#verified-gate{
+  position: fixed;
+  inset: 0;
+  display: none;                 /* shown by JS */
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+
+  padding:
+    calc(var(--page-pad) + env(safe-area-inset-top))
+    var(--page-pad)
+    calc(var(--page-pad) + env(safe-area-inset-bottom));
+
+  background: rgba(0,0,0,.70);
+}
+
+/* buttons inside verified chooser (same sizing + feel as your others) */
+#go-menu,
+#go-application,
+#verified-back{
+  flex: 1 1 180px;
+  min-width: min(180px, 100%);
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* "Dispensary Menu" = green like your YES button */
+#go-menu{
+  background-color:#053019;
+  color: goldenrod
+}
+#go-menu:hover{  
+  background: linear-gradient(90deg, darkred 0%, darkgreen 30%, gold 99%);
+  background-size: 200% 200%;
+  background-position: 100% 50%;
+  color: black; }
+
+/* "Job Application" = same gradient vibe as your employee button */
+#go-application{
+  border: 0;
+  outline: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  
+  background: darkslateblue;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  color: goldenrod;
+  font-weight: bold;
+  transition: background-position 250ms ease, color 200ms ease;
+  overflow: hidden;
+  background-clip: padding-box;
+}
+#go-application:hover{
+  background: linear-gradient(90deg, darkred 0%, darkgreen 30%, gold 99%);
+  background-size: 200% 200%;
+  background-position: 100% 50%;
+  color: black;
+}
+
+/* Back button = same neutral style as underage back */
+#verified-back{
+  background: darkred;
+  color: #eaeaea;
+  border-color: #ffffff33;
+}
+#verified-back:hover{ border-color: #ffffff66; }
+
+
+
+
+#Dispensary_Menu{
+  position: relative;
+  z-index: 1;
+  margin-top: 75px;
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: -webkit-fill-available;
+
+  padding:
+    calc(var(--page-pad) + env(safe-area-inset-top))
+    var(--page-pad)
+    calc(var(--page-pad) + env(safe-area-inset-bottom));
+}
+
+
+@media (max-width: 420px){
+  #go-menu,
+  #go-application,
+  #verified-back{
+    flex-basis: 100%;
+  }
+}
+
+
+/* @media prefers-dark{
+  body{
+    background: #1a1a1a;
+  }
+} */
