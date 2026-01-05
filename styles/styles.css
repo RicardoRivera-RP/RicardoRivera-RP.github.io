@@ -10,7 +10,7 @@
   --title-size: clamp(1.25rem, 4.5vw, 1.75rem);
   --text-size: clamp(0.95rem, 3.8vw, 1rem);
 }
-
+ 
 *,
 *::before,
 *::after{ box-sizing: border-box; }
@@ -285,9 +285,6 @@ body{
   padding: 24px;
 }
 
-/* =========================================================
-   VERIFIED DESTINATION CHOOSER (matches existing gate styles)
-   ========================================================= */
 
 #verified-gate{
   position: fixed;
@@ -305,7 +302,7 @@ body{
   background: rgba(0,0,0,.70);
 }
 
-/* buttons inside verified chooser (same sizing + feel as your others) */
+
 #go-menu,
 #go-application,
 #verified-back{
@@ -319,7 +316,7 @@ body{
   min-height: 44px;
 }
 
-/* "Dispensary Menu" = green like your YES button */
+
 #go-menu{
   background-color:#053019;
   color: goldenrod
@@ -330,7 +327,7 @@ body{
   background-position: 100% 50%;
   color: black; }
 
-/* "Job Application" = same gradient vibe as your employee button */
+
 #go-application{
   border: 0;
   outline: 0;
@@ -353,7 +350,7 @@ body{
   color: black;
 }
 
-/* Back button = same neutral style as underage back */
+
 #verified-back{
   background: darkred;
   color: #eaeaea;
@@ -383,9 +380,6 @@ body{
     calc(var(--page-pad) + env(safe-area-inset-bottom));
 }
 
-/* =========================================================
-   DISPENSARY MENU (no iframe) — matches existing theme
-   ========================================================= */
 
 .sr-only{
   position:absolute;
@@ -415,7 +409,7 @@ body{
     calc(var(--page-pad) + env(safe-area-inset-bottom));
 }
 
-/* container like .app-shell, but for menu content */
+
 .menu-shell{
   width: min(960px, 100%);
   padding: clamp(12px, 2.2vw, 18px);
@@ -435,7 +429,7 @@ body{
 
 .menu-title{
   margin: 0;
-  font-size: clamp(1.25rem, 4.5vw, 1.75rem); /* matches your title scale */
+  font-size: clamp(1.25rem, 4.5vw, 1.75rem); 
   line-height: 1.15;
   color: darkgray;
 }
@@ -633,7 +627,7 @@ body{
   cursor: pointer;
   font-weight: 800;
 
-  /* matches your gradient button vibe */
+  
   background: linear-gradient(90deg, darkred 0%, darkgreen 50%);
   background-size: 200% 200%;
   background-position: 0% 50%;
@@ -655,13 +649,13 @@ body{
   text-align: center;
 }
 
-/* ========= MENU PAGE: FULL-VIEW GLASS BACKDROP ========= */
+
 
 body.menu-page{
-  background: #2f2f2f; /* keep your base */
+  background: #2f2f2f; 
 }
 
-/* full-screen “blooms” BEHIND everything on the menu page */
+
 body.menu-page::before{
   content:"";
   position: fixed;
@@ -677,7 +671,7 @@ body.menu-page::before{
   filter: blur(16px);
 }
 
-/* make sure your menu section actually fills the screen */
+
 body.menu-page #Dispensary_Menu{
   position: relative;
   z-index: 1;                /* above the backdrop */
