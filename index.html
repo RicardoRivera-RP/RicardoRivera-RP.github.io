@@ -55,31 +55,7 @@
             <div class="employees">
               <button id="employee-section" type="button">Employee Login</button>
               <script>
-               function createPopup(message) {
-                const popup = document.createElement("div");
-                let ageGate = document.getElementById("age-gate");
-                ageGate.style.display = "none";
-                popup.className = 'popup';
-                popup.textContent = message;
-                popup.style.position = "fixed";
-                popup.style.top = "45%";
-                popup.style.left = "50%";
-                popup.style.transform = "translate(-50%, -50%)";
-                popup.style.padding = "10px";
-                popup.style.backgroundColor = "orangered";
-                popup.style.border = "1px solid black";
-                popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
-                popup.style.zIndex = "9999";
-                document.body.appendChild(popup);
-                return popup;   
-            }
-              function showPopup(message) {
-                  const popup = createPopup(message);
-                  setTimeout(function() {
-                      popup.remove();
-                  }, 
-                  3850);
-              }
+              
               document.addEventListener("DOMContentLoaded", () => {
               
 
@@ -107,14 +83,15 @@
           aria-describedby="verified-desc"
           style="display:none;"
         >
-          <div class="age-gate-box">
+          <div class = "age-gate-box" id="age-gate-box">
             <h2 id="verified-title" class="age-gate-title">Welcome</h2>
             <p id="verified-desc" class="age-gate-desc">
               You’re verified. Where would you like to go?
             </p>
 
             <div class="age-gate-buttons">
-              <!-- <button id="go-menu" type="button">Dispensary Menu</button> -->
+              <button id="go-menu" type="button"> Dispensary Menu</button>
+              
               <button id="go-application" type="button">Job Application</button>
             </div>
 
@@ -132,7 +109,7 @@
           aria-labelledby="underage-title"
           aria-describedby="underage-desc"
         >
-          <div class="age-gate-box">
+          <div class="age-gate-box" style=>
             <h2 id="underage-title" class="age-gate-title">Access Denied</h2>
             <h3 id="underage-verification">You are not old enough to access this website.</h3>
 
@@ -140,7 +117,7 @@
               You must be 21 or older to continue. Please exit the site.
             </p>
 
-            <div class="age-gate-buttons">
+            <div class="age-gate-buttons" id="verification-buttons">
               <button id="underage-back" type="button">Go Back</button>
               <button id="underage-leave" type="button">Leave Site</button>
             </div>
@@ -149,18 +126,7 @@
         <!-- end underage / access denied -->
 
         <!-- Dispo Menu Embed -->
-         <!-- Dispensary Menu (hidden until chosen) -->
-          <section id="Dispensary_Menu" style="display:none;">
-            <div class="app-shell">
-              <!-- TODO: replace with your real menu page/embed -->
-              <iframe
-                src="./menu.html"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0"
-              >Loading…</iframe>
-            </div>
-          </section>
+        
         <!-- End of Dispo Menu Embed -->
     <!-- Job Application Embed -->
     <section id="Puff_Puff_Application">
@@ -179,4 +145,54 @@
       
   </body>
 <script src="scripts/landing_page.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    function PPP_showPopup(message, ms = 2500) {
+      const popup = document.createElement("div");
+      popup.className = "popup";
+      popup.textContent = message;
+      let ageGate = document.getElementById("age-gate");
+      ageGate.style.display = "none";
+      let ageVerified = document.getElementById("age-gate-box");
+      ageVerified.style.display = "none";
+      Object.assign(popup.style, {
+        position: "fixed",
+        top: "45%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        padding: "12px 14px",
+        backgroundColor: "orangered",
+        border: "1px solid black",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+        zIndex: "2147483647",   // ✅ always on top
+        borderRadius: "10px",
+        fontFamily: "Inter, sans-serif",
+        fontWeight: "600",
+        pointerEvents: "auto"
+      });
+
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), ms);
+    }
+
+    // Employee Login
+    const employeeBtn = document.getElementById("employee-section");
+    employeeBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      PPP_showPopup("You will be prompted to login shortly, please standby!", 1500);
+      setTimeout(() => window.location.href = "./employee.html", 1400);
+    });
+
+    // Dispensary Menu
+    const menuBtn = document.getElementById("go-menu");
+    menuBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      PPP_showPopup("Loading Dispensary Menu, please standby!", 2500);
+      setTimeout(() => window.location.href = "./menu.html", 800);
+    });
+
+  });
+</script>
+
 </html>

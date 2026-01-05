@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Puff Puff Pass</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  
+    <meta name="description" content="Puff Puff Pass Website" />
+    <meta name="author" content="Ricardo Rivera" />
+    <meta name="keywords" content="Puff Puff Pass" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="icon" href="media/Icons/shop.svg" type="image/svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+  </head>
+    <body class ="menu-page">
+    <main id="main-content">
+    <section id="Dispensary_Menu">
+    <div class="menu-shell">
+        <header class="menu-header">
+        <div class="menu-header-left">
+            <h1 class="menu-title">Puff Puff Pass Dispensary Menu</h1>
+            <p class="menu-subtitle">For Viewing Purposes Only</p>
+        </div>
+
+        <!-- <button id="menu-back" class="menu-back" type="button">Back</button> -->
+        </header>
+
+        <div class="menu-controls">
+        <!-- <label class="menu-search" aria-label="Search products">
+            <span class="sr-only">Search</span>
+            <input id="menu-search" type="search" placeholder="Search strain, brand, effect…" />
+        </label> -->
+
+        <!-- <select id="menu-sort" class="menu-sort" aria-label="Sort products">
+            <option value="featured">Sort: Featured</option>
+            <option value="price_asc">Sort: Price (Low → High)</option>
+            <option value="price_desc">Sort: Price (High → Low)</option>
+            <option value="thc_desc">Sort: Potency (High → Low)</option>
+            <option value="name_asc">Sort: Name (A → Z)</option>
+        </select> -->
+        </div>
+
+        <nav class="menu-chips" aria-label="Menu categories">
+        <!-- <button class="chip is-active" data-cat="All" type="button">All</button>
+        <button class="chip" data-cat="Flower" type="button">Flower</button> -->
+        <!-- <button class="chip" data-cat="Pre-Rolls" type="button">Pre-Rolls</button>
+        <button class="chip" data-cat="Vapes" type="button">Vapes</button>
+        <button class="chip" data-cat="Edibles" type="button">Edibles</button>
+        <button class="chip" data-cat="Concentrates" type="button">Concentrates</button>
+        <button class="chip" data-cat="Topicals" type="button">Topicals</button>
+        <button class="chip" data-cat="Tinctures" type="button">Tinctures</button> -->
+        <!-- <button class="chip" data-cat="Accessories" type="button">Accessories</button> -->
+        </nav>
+
+        <div class="menu-grid" id="menu-grid">
+        <!-- ✅ Paste these inside: <div class="menu-grid" id="menu-grid"> ... </div>
+        (replace your example cards if you want)
+        I kept the same structure + tags you already use. -->
+
+        <!-- Purple Panty Dropper -->
+        <article class="menu-card" data-cat="Flower" data-thc="26.8" data-price="32" data-name="Purple Panty Dropper">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type indica">Indica</span>
+        </div>
+        <h3 class="menu-card-name">Purple Panty Dropper</h3>
+        <p class="menu-card-brand">Ruby Farms</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 26.8%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$320</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Northern Lights -->
+        <article class="menu-card" data-cat="Flower" data-thc="24.4" data-price="28" data-name="Northern Lights">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type indica">Indica</span>
+        </div>
+        <h3 class="menu-card-name">Northern Lights</h3>
+        <p class="menu-card-brand">Back Home Cannabis Co.</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 24.4%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$280</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Sleepy Runtz -->
+        <article class="menu-card" data-cat="Flower" data-thc="27.1" data-price="34" data-name="Sleepy Runtz">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type hybrid">Hybrid</span>
+        </div>
+        <h3 class="menu-card-name">Sleepy Runtz</h3>
+        <p class="menu-card-brand">Paleto Gardens</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 27.1%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$340</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Handbrake Haze -->
+        <article class="menu-card" data-cat="Flower" data-thc="22.9" data-price="30" data-name="Handbrake Haze">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type sativa">Sativa</span>
+        </div>
+        <h3 class="menu-card-name">Handbrake Haze</h3>
+        <p class="menu-card-brand">Los Santos Cultivators</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 22.9%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$300</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Blueberry Bubba Kush -->
+        <article class="menu-card" data-cat="Flower" data-thc="25.6" data-price="33" data-name="Blueberry Bubba Kush">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type indica">Indica</span>
+        </div>
+        <h3 class="menu-card-name">Blueberry Bubba Kush</h3>
+        <p class="menu-card-brand">Ruby Farms</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 25.6%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$330</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Platinum Haze -->
+        <article class="menu-card" data-cat="Flower" data-thc="23.7" data-price="31" data-name="Platinum Haze">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type sativa">Sativa</span>
+        </div>
+        <h3 class="menu-card-name">Platinum Haze</h3>
+        <p class="menu-card-brand">Back Home Cannabis Co.</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 23.7%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$310</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Sour Diesel -->
+        <article class="menu-card" data-cat="Flower" data-thc="21.9" data-price="29" data-name="Sour Diesel">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type sativa">Sativa</span>
+        </div>
+        <h3 class="menu-card-name">Sour Diesel</h3>
+        <p class="menu-card-brand">Los Santos Cultivators</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 21.9%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$290</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Los Santos Confidential -->
+        <article class="menu-card" data-cat="Flower" data-thc="28.4" data-price="36" data-name="Los Santos Confidential">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type hybrid">Hybrid</span>
+        </div>
+        <h3 class="menu-card-name">Los Santos Confidential</h3>
+        <p class="menu-card-brand">Los Santos Cultivators</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 28.4%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$360</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Paleto Pineapple Kush -->
+        <article class="menu-card" data-cat="Flower" data-thc="24.9" data-price="32" data-name="Paleto Pineapple Kush">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type hybrid">Hybrid</span>
+        </div>
+        <h3 class="menu-card-name">Paleto Pineapple Kush</h3>
+        <p class="menu-card-brand">Paleto Gardens</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 24.9%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$320</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+
+        <!-- Lemon Haze -->
+        <article class="menu-card" data-cat="Flower" data-thc="22.4" data-price="30" data-name="Lemon Haze">
+        <div class="menu-card-top">
+            <span class="tag tag-cat">Flower</span>
+            <span class="tag tag-type sativa">Sativa</span>
+        </div>
+        <h3 class="menu-card-name">Lemon Haze</h3>
+        <p class="menu-card-brand">Back Home Cannabis Co.</p>
+        <div class="menu-card-meta">
+            <span>1/8 oz</span>
+            <span>THC 22.4%</span>
+        </div>
+        <div class="menu-card-bottom">
+            <div class="menu-price">$300</div>
+            <!-- <button class="menu-add" type="button">Add</button> -->
+        </div>
+        </article>
+        
+        <!-- ✅ Accessories cards (paste inside #menu-grid) -->
+
+            <!-- Grow Lamps -->
+            <article class="menu-card" data-cat="Accessories" data-thc="0" data-price="500" data-name="Grow Lamps">
+            <div class="menu-card-top">
+                <span class="tag tag-cat">Accessories</span>
+            </div>
+            <h3 class="menu-card-name">Grow Lamps</h3>
+            <p class="menu-card-brand">Puff Puff Supply Co.</p>
+            <div class="menu-card-meta">
+                <span>Indoor grow gear</span>
+                <span>$500</span>
+            </div>
+            <div class="menu-card-bottom">
+                <div class="menu-price">$500</div>
+                <!-- <button class="menu-add" type="button">Add</button> -->
+            </div>
+            </article>
+
+            <!-- Fertilizer -->
+            <article class="menu-card" data-cat="Accessories" data-thc="0" data-price="200" data-name="Fertilizer">
+            <div class="menu-card-top">
+                <span class="tag tag-cat">Accessories</span>
+            </div>
+            <h3 class="menu-card-name">Fertilizer</h3>
+            <p class="menu-card-brand">Puff Puff Supply Co.</p>
+            <div class="menu-card-meta">
+                <span>Nutrient mix</span>
+                <span>$200</span>
+            </div>
+            <div class="menu-card-bottom">
+                <div class="menu-price">$200</div>
+                <!-- <button class="menu-add" type="button">Add</button> -->
+            </div>
+            </article>
+
+            <!-- Water Cans -->
+            <article class="menu-card" data-cat="Accessories" data-thc="0" data-price="200" data-name="Water Cans">
+            <div class="menu-card-top">
+                <span class="tag tag-cat">Accessories</span>
+            </div>
+            <h3 class="menu-card-name">Water Cans</h3>
+            <p class="menu-card-brand">Puff Puff Supply Co.</p>
+            <div class="menu-card-meta">
+                <span>Watering can</span>
+                <span>$200</span>
+            </div>
+            <div class="menu-card-bottom">
+                <div class="menu-price">$200</div>
+                <!-- <button class="menu-add" type="button">Add</button> -->
+            </div>
+            </article>
+
+            <!-- Trowel -->
+            <article class="menu-card" data-cat="Accessories" data-thc="0" data-price="200" data-name="Trowel">
+            <div class="menu-card-top">
+                <span class="tag tag-cat">Accessories</span>
+            </div>
+            <h3 class="menu-card-name">Trowel</h3>
+            <p class="menu-card-brand">Puff Puff Supply Co.</p>
+            <div class="menu-card-meta">
+                <span>Hand tool</span>
+                <span>$200</span>
+            </div>
+            <div class="menu-card-bottom">
+                <div class="menu-price">$200</div>
+                <!-- <button class="menu-add" type="button">Add</button> -->
+            </div>
+            </article>
+
+    </div>
+
+    <p class="menu-footnote">
+      For adults 21+ only. Keep out of reach of children.
+    </p>
+  </div>
+</section>
+
+
+</main>
+  </body>
+</html>

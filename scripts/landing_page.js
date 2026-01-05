@@ -59,16 +59,7 @@ const Dispensary_Menu = document.getElementById("Dispensary_Menu");
     document.getElementById("go-menu")?.focus();
   }
 
-  function showMenu() {
-    hide(ageGate);
-    hide(underageGate);
-    hide(verifiedGate);
-
-    if (Puff_Puff_Application) Puff_Puff_Application.style.display = "none";
-    if (Dispensary_Menu) Dispensary_Menu.style.display = "block"; // or "flex" if you prefer
-
-    unlockSite();
-  }
+ 
 
   function showApplication() {
     hide(ageGate);
