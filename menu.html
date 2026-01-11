@@ -23,6 +23,9 @@
             <a href="https://ricardorivera-rp.github.io/employee.html" class="nav-link">Employee Login</a>
           </button>
       </nav>
+
+      
+
     <body class ="menu-page">
        
     <main id="main-content">
@@ -77,7 +80,7 @@
 
         <div class="menu-grid" id="menu-grid">
             <!-- Purple Panty Dropper -->
-        <article class="menu-card" data-cat="Pre-Rolls" data-thc="26.8-34.4%" data-price="320-1250" data-name="Purple Panty Dropper">
+        <article class="menu-card" data-cat="Pre-Rolls" data-thc="22.8%-34.4%" data-price="320-1250" data-name="Purple Panty Dropper">
         <div class="menu-card-top">
             <span class="tag tag-cat">Pre-Rolls</span>
             <span class="tag tag-type indica">Indica/Sativa/Hybrid</span>
@@ -85,11 +88,12 @@
         <h3 class="menu-card-name">Pre-Rolls (Any Strain)</h3>
         <p class="menu-card-brand">Puff Puff Farms</p>
         <div class="menu-card-meta">
-            <span>1/8 oz</span>
-            <span>26.8%-34.4%</span>
+            <span>1 Pre-Roll</span>
+            <span>22.8%-34.4%</span>
         </div>
         <div class="menu-card-bottom">
-            <div class="menu-price">$620-$1250</div>
+            <div class="menu-price">$1750-$2450</div>
+           
             <!-- <button class="menu-add" type="button">Add</button> -->
         </div>
         </article>
@@ -109,7 +113,7 @@
             <span>THC 26.8%</span>
         </div>
         <div class="menu-card-bottom">
-            <div class="menu-price">$320</div>
+            <div class="menu-price">$520</div>
             <!-- <button class="menu-add" type="button">Add</button> -->
         </div>
         </article>
@@ -145,7 +149,7 @@
             <span>THC 27.1%</span>
         </div>
         <div class="menu-card-bottom">
-            <div class="menu-price">$340</div>
+            <div class="menu-price">$600</div>
             <!-- <button class="menu-add" type="button">Add</button> -->
         </div>
         </article>
@@ -181,7 +185,7 @@
             <span>THC 25.6%</span>
         </div>
         <div class="menu-card-bottom">
-            <div class="menu-price">$330</div>
+            <div class="menu-price">$475</div>
             <!-- <button class="menu-add" type="button">Add</button> -->
         </div>
         </article>
@@ -235,7 +239,7 @@
             <span>THC 28.4%</span>
         </div>
         <div class="menu-card-bottom">
-            <div class="menu-price">$360</div>
+            <div class="menu-price">$660</div>
             <!-- <button class="menu-add" type="button">Add</button> -->
         </div>
         </article>
@@ -253,7 +257,7 @@
             <span>THC 24.9%</span>
         </div>
         <div class="menu-card-bottom">
-            <div class="menu-price">$320</div>
+            <div class="menu-price">$380</div>
             <!-- <button class="menu-add" type="button">Add</button> -->
         </div>
         </article>
@@ -370,5 +374,41 @@
 
 
 </main>
+<script>
+  function calculatePriceFromTHC(thc) {
+    const basePrice = 250;        // base price
+    const pricePerPercent = 25;  // $ per 1% THC
+    return Math.round(basePrice + (thc * pricePerPercent));
+  }
+
+  document.querySelectorAll(".menu-card").forEach(card => {
+    const thcAttr = card.dataset.thc;
+
+    // Skip accessories or invalid THC
+    if (!thcAttr || thcAttr === "0") return;
+
+    // Handle ranges like "26.8-34.4%"
+    let thcValue;
+    if (thcAttr.includes("-")) {
+      const [min, max] = thcAttr.replace("%", "").split("-").map(Number);
+      thcValue = (min + max) / 2; // average THC
+    } else {
+      thcValue = parseFloat(thcAttr);
+    }
+
+    if (isNaN(thcValue)) return;
+
+    const price = calculatePriceFromTHC(thcValue);
+
+    // Update data attribute
+    card.dataset.price = price;
+
+    // Update visible price
+    const priceEl = card.querySelector(".menu-price");
+    if (priceEl) {
+      priceEl.textContent = `$${price}`;
+    }
+  });
+</script>
   </body>
 </html>
