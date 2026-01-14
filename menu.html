@@ -51,22 +51,28 @@
       
         </header>
 
+        
         <div class="menu-controls">
-        <!-- <label class="menu-search" aria-label="Search products">
+          <label class="menu-search" aria-label="Search products">
             <span class="sr-only">Search</span>
-            <input id="menu-search" type="search" placeholder="Search strain, brand, effect…" />
-        </label> -->
+            <input id="menu-search" type="search" placeholder="Search name, brand, type…" autocomplete="off" />
+          </label>
 
-        <!-- <select id="menu-sort" class="menu-sort" aria-label="Sort products">
+          <select id="menu-category" class="menu-sort" aria-label="Filter by product type">
+            <option value="All">All Types</option>
+          </select>
+
+          <select id="menu-sort" class="menu-sort" aria-label="Sort products">
             <option value="featured">Sort: Featured</option>
             <option value="price_asc">Sort: Price (Low → High)</option>
             <option value="price_desc">Sort: Price (High → Low)</option>
-            <option value="thc_desc">Sort: Potency (High → Low)</option>
+            <option value="thc_desc">Sort: THC Potency (High → Low)</option>
             <option value="name_asc">Sort: Name (A → Z)</option>
-        </select> -->
+          </select>
         </div>
 
-        <nav class="menu-chips" aria-label="Menu categories">
+
+        <nav class="menu-chips" id="menu-chips" aria-label="Menu categories">
         <!-- <button class="chip is-active" data-cat="All" type="button">All</button>
         <button class="chip" data-cat="Flower" type="button">Flower</button> -->
         <!-- <button class="chip" data-cat="Pre-Rolls" type="button">Pre-Rolls</button>
@@ -80,7 +86,7 @@
 
         <div class="menu-grid" id="menu-grid">
             <!-- Purple Panty Dropper -->
-        <article class="menu-card" data-cat="Pre-Rolls" data-thc="22.8%-34.4%" data-price="320-1250" data-name="Purple Panty Dropper">
+        <article class="menu-card" data-cat="Pre-Rolls"  data-name="Purple Panty Dropper">
         <div class="menu-card-top">
             <span class="tag tag-cat">Pre-Rolls</span>
             <span class="tag tag-type indica">Indica/Sativa/Hybrid</span>
@@ -89,10 +95,10 @@
         <p class="menu-card-brand">Puff Puff Farms</p>
         <div class="menu-card-meta">
             <span>1 Pre-Roll</span>
-            <span>22.8%-34.4%</span>
+            <span>Strain Price + $300 Pre-Roll Fee</span>
         </div>
         <div class="menu-card-bottom">
-            <div class="menu-price">$1750-$2450</div>
+            <div class="menu-price"></div>
            
             <!-- <button class="menu-add" type="button">Add</button> -->
         </div>
@@ -362,53 +368,266 @@
             </div>
             <div class="menu-card-bottom">
                 <div class="menu-price">$1750</div>
+            </article>
+
+            <!-- Weed Tables -->
+<article class="menu-card" data-cat="Accessories" data-thc="0" data-price="20000" data-name="Weed Tables">
+  <div class="menu-card-top">
+    <span class="tag tag-cat">Accessories</span>
+  </div>
+  <h3 class="menu-card-name">Weed Tables</h3>
+  <p class="menu-card-brand">Puff Puff Supply Co.</p>
+  <div class="menu-card-meta">
+    <span>Professional trimming & grow tables</span>
+    <span>$20000</span>
+  </div>
+  <div class="menu-card-bottom">
+    <div class="menu-price">$20000</div>
+  </div>
+</article>
+<!-- Flower Pots -->
+<article class="menu-card" data-cat="Accessories" data-thc="0" data-price="500" data-name="Flower Pots">
+  <div class="menu-card-top">
+    <span class="tag tag-cat">Accessories</span>
+  </div>
+  <h3 class="menu-card-name">Flower Pots</h3>
+  <p class="menu-card-brand">Puff Puff Supply Co.</p>
+  <div class="menu-card-meta">
+    <span>Indoor & outdoor grow pots</span>
+    <span>$500</span>
+  </div>
+  <div class="menu-card-bottom">
+    <div class="menu-price">$500</div>
+  </div>
+</article>
+
 
     </div>
-
-    
   </div>
+  </section>
+  <div>
 <p class="menu-footnote">
       For adults 21+ only. Keep out of reach of children.
     </p>
-</section>
+    <br>
+     </div>
+  </div>
+
 
 
 </main>
+
 <script>
-  function calculatePriceFromTHC(thc) {
-    const basePrice = 250;        // base price
-    const pricePerPercent = 25;  // $ per 1% THC
-    return Math.round(basePrice + (thc * pricePerPercent));
+  // ================== MENU INTERACTIVITY (SEARCH / FILTER / SORT) ==================
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("menu-grid");
+    if (!grid) return;
+
+    const allCards = Array.from(grid.querySelectorAll(".menu-card"));
+
+    const searchEl = document.getElementById("menu-search");
+    const categoryEl = document.getElementById("menu-category");
+    const sortEl = document.getElementById("menu-sort");
+    const chipsNav = document.getElementById("menu-chips");
+
+    const nf = new Intl.NumberFormat("en-US");
+
+    // ---------- helpers ----------
+    function numOrNaN(v) {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function parsePriceValue(card) {
+      const raw = (card?.dataset?.price || "").toString().trim();
+      if (!raw) return NaN;
+
+      // support ranges like "320-1250"
+      if (raw.includes("-")) {
+        const parts = raw.split("-").map(s => s.trim()).filter(Boolean);
+        const first = numOrNaN(parts[0]);
+        return first;
+      }
+      return numOrNaN(raw);
+    }
+
+    function parseThcValue(card) {
+      const raw = (card?.dataset?.thc || "").toString().trim();
+      if (!raw) return NaN;
+
+      
+      const cleaned = raw.replace(/[^0-9.\-]/g, "");
+      if (!cleaned) return NaN;
+
+      if (cleaned.includes("-")) {
+        const [a, b] = cleaned.split("-").map(numOrNaN);
+       
+        return Number.isFinite(b) ? b : a;
+      }
+      return numOrNaN(cleaned);
+    }
+
+    function textHaystack(card) {
+      const name = (card.dataset.name || card.querySelector(".menu-card-name")?.textContent || "").toLowerCase();
+      const brand = (card.querySelector(".menu-card-brand")?.textContent || "").toLowerCase();
+      const cat = (card.dataset.cat || "").toLowerCase();
+      return `${name} ${brand} ${cat}`.trim();
+    }
+
+    function formatNumberLike(text) {
+     
+      return text.replace(/\d{1,3}(?:,\d{3})+|\d{4,}/g, (m) => {
+        const n = Number(m.replace(/,/g, ""));
+        return Number.isFinite(n) ? nf.format(n) : m;
+      });
+    }
+
+    function formatMoneyAndMeta(card) {
+      const priceEl = card.querySelector(".menu-price");
+      if (priceEl && priceEl.textContent) {
+        priceEl.textContent = formatNumberLike(priceEl.textContent);
+      }
+
+      card.querySelectorAll(".menu-card-meta span").forEach((span) => {
+        if (!span.textContent) return;
+        span.textContent = formatNumberLike(span.textContent);
+      });
+    }
+
+      function calculatePriceFromTHC(thc) {
+      const basePrice = 250;
+      const pricePerPercent = 25;
+      return Math.round(basePrice + (thc * pricePerPercent));
+    }
+
+    function maybeAutofixPrice(card) {
+  const thc = parseThcValue(card);
+  const cat = (card.dataset.cat || "").toLowerCase().trim();
+
+    const isFlower = (cat === "flower" || cat === "buds" || cat === "bud");
+  if (isFlower) {
+    if (!Number.isFinite(thc) || thc <= 0) return;
+
+    const price = calculatePriceFromTHC(thc);
+    card.dataset.price = String(price);
+
+    const priceEl = card.querySelector(".menu-price");
+    if (priceEl) priceEl.textContent = `$${price}`;
+    return;
   }
 
-  document.querySelectorAll(".menu-card").forEach(card => {
-    const thcAttr = card.dataset.thc;
+   if (!Number.isFinite(thc) || thc <= 0) return;
+  if (cat === "accessories") return;
 
-    // Skip accessories or invalid THC
-    if (!thcAttr || thcAttr === "0") return;
+  const current = parsePriceValue(card);
 
-    // Handle ranges like "26.8-34.4%"
-    let thcValue;
-    if (thcAttr.includes("-")) {
-      const [min, max] = thcAttr.replace("%", "").split("-").map(Number);
-      thcValue = (min + max) / 2; // average THC
-    } else {
-      thcValue = parseFloat(thcAttr);
-    }
+  if (!Number.isFinite(current) || current < 100) {
+    const price = calculatePriceFromTHC(thc);
+    card.dataset.price = String(price);
 
-    if (isNaN(thcValue)) return;
-
-    const price = calculatePriceFromTHC(thcValue);
-
-    // Update data attribute
-    card.dataset.price = price;
-
-    // Update visible price
     const priceEl = card.querySelector(".menu-price");
-    if (priceEl) {
-      priceEl.textContent = `$${price}`;
+    if (priceEl) priceEl.textContent = `$${price}`;
+  }
+}
+
+
+    allCards.forEach((card) => {
+      maybeAutofixPrice(card);
+      formatMoneyAndMeta(card);
+    });
+
+    const categories = Array.from(
+      new Set(allCards.map((c) => (c.dataset.cat || "").trim()).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b));
+
+    if (categoryEl) {
+   
+      categories.forEach((cat) => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        categoryEl.appendChild(opt);
+      });
     }
+
+    function setActiveChip(cat) {
+      if (!chipsNav) return;
+      chipsNav.querySelectorAll(".chip").forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.cat === cat);
+      });
+    }
+
+    if (chipsNav) {
+      chipsNav.innerHTML = "";
+      const mkChip = (cat, label) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "chip" + (cat === "All" ? " is-active" : "");
+        btn.dataset.cat = cat;
+        btn.textContent = label || cat;
+        btn.addEventListener("click", () => {
+          if (categoryEl) categoryEl.value = cat;
+          setActiveChip(cat);
+          apply();
+        });
+        return btn;
+      };
+
+      chipsNav.appendChild(mkChip("All", "All"));
+      categories.forEach((cat) => chipsNav.appendChild(mkChip(cat)));
+    }
+
+    // ---------- render + apply ----------
+    function apply() {
+      const q = (searchEl?.value || "").trim().toLowerCase();
+      const cat = (categoryEl?.value || "All").trim();
+      const sort = (sortEl?.value || "featured").trim();
+
+      let list = allCards.filter((card) => {
+        const cardCat = (card.dataset.cat || "").trim();
+        if (cat !== "All" && cardCat !== cat) return false;
+
+        if (q) {
+          const hay = textHaystack(card);
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (sort === "price_asc") {
+        list.sort((a, b) => (parsePriceValue(a) || Infinity) - (parsePriceValue(b) || Infinity));
+      } else if (sort === "price_desc") {
+        list.sort((a, b) => (parsePriceValue(b) || -Infinity) - (parsePriceValue(a) || -Infinity));
+      } else if (sort === "thc_desc") {
+        list.sort((a, b) => (parseThcValue(b) || -Infinity) - (parseThcValue(a) || -Infinity));
+      } else if (sort === "name_asc") {
+        list.sort((a, b) => {
+          const an = (a.dataset.name || a.querySelector(".menu-card-name")?.textContent || "").trim();
+          const bn = (b.dataset.name || b.querySelector(".menu-card-name")?.textContent || "").trim();
+          return an.localeCompare(bn);
+        });
+      }
+
+      grid.innerHTML = "";
+      list.forEach((card) => grid.appendChild(card));
+
+      list.forEach(formatMoneyAndMeta);
+      setActiveChip(cat);
+    }
+
+    let t = null;
+    function debounceApply() {
+      clearTimeout(t);
+      t = setTimeout(apply, 80);
+    }
+
+    searchEl?.addEventListener("input", debounceApply);
+    categoryEl?.addEventListener("change", () => apply());
+    sortEl?.addEventListener("change", () => apply());
+
+    apply();
   });
 </script>
+
   </body>
 </html>
