@@ -2,27 +2,145 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Employee Portal</title>
+
+  <!-- Match the rest of your site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/styles.css" />
+
   <style>
-    html, body { height: 100%; margin: 0; background:#111; }
-    #msg { color:#eee; font-family: Arial; padding: 16px; }
-    .btn {
-      display:inline-block; padding:12px 16px; border-radius:10px;
-      background:orangered; color:#111; font-weight:800; text-decoration:none;
-      border:0; cursor:pointer;
+    /* Small, page-specific additions that reuse your existing look */
+    body.employee-page{
+      background:#2f2f2f;
+    }
+    body.employee-page::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+
+      background:
+        radial-gradient(900px 700px at 15% 10%, rgba(139,0,0,.28), transparent 60%),
+        radial-gradient(900px 700px at 85% 20%, rgba(0,100,0,.26), transparent 60%),
+        radial-gradient(900px 700px at 45% 95%, rgba(218,165,32,.20), transparent 62%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75));
+      filter: blur(16px);
+    }
+
+    .employee-wrap{
+      width: min(740px, 100%);
+      padding: clamp(12px, 2.2vw, 18px);
+      border-radius: 18px;
+
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      overflow: hidden;
+    }
+
+    .employee-title{
+      margin: 0;
+      font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+      line-height: 1.15;
+      color: darkgray;
+      text-align: center;
+    }
+    .employee-sub{
+      margin: 8px 0 0;
+      font-size: clamp(0.95rem, 3.6vw, 1rem);
+      color: rgba(255,255,255,.72);
+      text-align: center;
+    }
+
+    .employee-actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 14px;
+    }
+
+    .ppp-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: 12px;
+
+      text-decoration:none;
+      font-weight: 900;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 12px 30px rgba(0,0,0,.45);
+
+      color: goldenrod;
+      background: linear-gradient(90deg, darkred 0%, darkgreen 55%);
+      background-size: 200% 200%;
+      background-position: 0% 50%;
+
+      transition: background-position 250ms ease, color 200ms ease, transform 120ms ease, border-color 200ms ease;
+    }
+    .ppp-btn:hover{
+      background: linear-gradient(90deg, darkred 0%, darkgreen 30%, rgba(218,165,32,.95) 99%);
+      background-size: 200% 200%;
+      background-position: 100% 50%;
+      color: #111;
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    .employee-note{
+      margin: 12px 0 0;
+      color: rgba(255,255,255,.60);
+      font-size: 0.95rem;
+      text-align: center;
     }
   </style>
 </head>
-<body>
-  <div id="msg">Loading…</div>
 
-  <form id="postForm" method="POST" style="display:none;">
-    <input type="hidden" name="token" id="tokenField" value="">
-  </form>
+<body class="employee-page">
+  <!-- Optional: if you want the same image layer used on your main pages, keep this.
+       If your site-bg image path differs, change it here. -->
+  <div id="site-bg" style="background-image:url('media/icons/9ea05517-6abf-4e98-a651-70aa6df369de.png');"></div>
+
+  <nav class="ppp-nav" id="top-nav">
+    <button>
+      <a href="https://pppass.com" class="nav-link">Return Home</a>
+    </button>
+  </nav>
+
+  <main id="Puff_Puff_Application">
+    <section class="employee-wrap">
+      <h1 class="employee-title">Employee Portal</h1>
+      <p class="employee-sub" id="msg">Loading…</p>
+
+      <form id="postForm" method="POST" style="display:none;">
+        <input type="hidden" name="token" id="tokenField" value="">
+      </form>
+
+      <div class="employee-actions" id="fallbackActions" style="display:none;">
+        <button class="ppp-btn" type="button" id="openPosBtn">Open POS</button>
+        <a class="ppp-btn" href="https://pppass.com" role="button">Return Home</a>
+      </div>
+
+      <p class="employee-note">
+        If the POS doesn’t open automatically, use “Open POS”.
+      </p>
+    </section>
+  </main>
 
   <script>
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbzl_MwzGuQgU0RyM4zMPcXVjcnn9fvu4MhB33MNp6XYy6sLo20kRbuMCvs0o2oN6Hk/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxWxc_T8X2qZ0d_jIEQ6ugz4KC19paMa6pz9y_1bH0cVPGM0yqax6ozpFmOh2xtFZAE/exec";
 
     function getTokenFromHash() {
       const m = location.hash.match(/token=([^&]+)/);
@@ -32,6 +150,8 @@
     const msg = document.getElementById("msg");
     const form = document.getElementById("postForm");
     const tokenField = document.getElementById("tokenField");
+    const fallbackActions = document.getElementById("fallbackActions");
+    const openPosBtn = document.getElementById("openPosBtn");
 
     const token = getTokenFromHash() || sessionStorage.getItem("ppp_token");
 
@@ -47,16 +167,13 @@
       form.action = GAS_URL;
       form.submit();
 
-      // fallback UI if blocked
+      // fallback UI if blocked / popup prevention
       setTimeout(() => {
-        msg.innerHTML = `
-          <div style="max-width:640px;margin:24px auto;background:#111;color:#eee;padding:18px;border-radius:14px;font-family:Arial;">
-            <h2 style="margin:0 0 10px;">Continue to POS</h2>
-            <p style="margin:0 0 16px;opacity:.85;">If nothing happened, click below.</p>
-            <button class="btn" onclick="document.getElementById('postForm').submit()">Open POS</button>
-          </div>
-        `;
+        msg.textContent = "If nothing happened, click below to continue.";
+        fallbackActions.style.display = "flex";
       }, 1200);
+
+      openPosBtn?.addEventListener("click", () => form.submit());
     }
   </script>
 </body>
